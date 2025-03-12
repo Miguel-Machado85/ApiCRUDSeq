@@ -14,9 +14,7 @@ const addUser = async (req, res) =>{
     try{
         const {nombre, email, password} = req.body;
 
-        const hashContraseña = await bcrypt.hash(password);
-
-        const usuario = await Usuario.create({nombre, email, password:hashContraseña});
+        const usuario = await Usuario.create({nombre, email, password});
         res.status(201).json(usuario);
     }catch(error){
         res.status(500).json({error: error.message})
